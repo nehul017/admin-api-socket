@@ -18,6 +18,26 @@ function loginSchema(req, res, next) {
   validateRequest(req, next, schema);
 }
 
+function caretTaskSchema(req, res, next) {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    type: Joi.string().required(),
+    amount: Joi.string().required(),
+    description: Joi.string().required(),
+  });
+  validateRequest(req, next, schema);
+}
+
+function updateTaskSchema(req, res, next) {
+  const schema = Joi.object({
+    name: Joi.string().optional(),
+    type: Joi.string().optional(),
+    amount: Joi.string().optional(),
+    description: Joi.string().optional(),
+  });
+  validateRequest(req, next, schema);
+}
+
 function validateRequest(req, next, schema) {
   const options = {
     abortEarly: false, // include all errors
@@ -36,4 +56,6 @@ function validateRequest(req, next, schema) {
 module.exports = {
   registerSchema,
   loginSchema,
+  caretTaskSchema,
+  updateTaskSchema,
 };

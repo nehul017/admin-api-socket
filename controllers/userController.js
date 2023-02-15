@@ -11,7 +11,6 @@ class userController {
       if (user) throw new Error("User already exiting");
 
       body.password = md5(body.password);
-      console.log("body", body);
 
       const newUser = await userService.create(body);
 
