@@ -6,6 +6,12 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { router } = require("./routers");
 const cors = require("cors");
+global.io = require("socket.io")(server);
+
+io.on("connection", (socket) => {
+  console.log("socket", socket);
+  socket.on("disconnect", () => {});
+});
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/test")
@@ -20,7 +26,7 @@ app.use(cors());
 app.use("/", router);
 
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send("Server Healthy");
 });
 
 server.listen(5000, (err) => {
