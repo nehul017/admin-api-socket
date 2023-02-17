@@ -5,7 +5,7 @@ class userController {
     try {
       const { body } = req;
 
-      const task = await taskService.getOneUser({ name: body.name });
+      const task = await taskService.getOneTask({ name: body.name });
 
       if (task) throw new Error("Task already exiting");
 
@@ -21,7 +21,7 @@ class userController {
     try {
       const { body } = req;
 
-      const task = await taskService.getOneUser({ _id: req.params.id });
+      const task = await taskService.getOneTask({ _id: req.params.id });
 
       if (!task) throw new Error("Task not found");
 
@@ -37,7 +37,7 @@ class userController {
     try {
       const { params } = req;
 
-      const task = await taskService.getOneUser({ name: params.id });
+      const task = await taskService.getOneTask({ name: params.id });
 
       if (!task) throw new Error("Task not found");
 
